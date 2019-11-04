@@ -48,7 +48,6 @@ class OrdersController < ApplicationController
       @order.total += (t.service.cost.to_f * t.value)
     end
     if @order.save
-      # Order.new.write_off(@order, -1)
       writing_off(-1)
       flash[:notice] = "Successfully created page."
       redirect_to patient_path(@patient)
@@ -59,15 +58,13 @@ class OrdersController < ApplicationController
 
   def writing_off(sign)
      @order.service_orders.each do |service_order|
-        ServiceMaterial.all.each do |service_material|
-          if service_material.service.id == service_order.service.id
-            @material = Material.where({service_material: service_material}).first
-            @material.value += sign * service_material.value_m * service_order.value
-            binding.pry
-            @material.save
-          end
-        end
+      service_material = ServiceMaterial.where(["service_id = ?",service_order.service.id]).first
+      if service_material.nil?
+        material = Material.where({service_material: service_material.id}).first
+        material.value += sign * service_material.value_m * service_order.value
+        material.save
       end
+    end
   end
 
   def age(dob)
@@ -77,7 +74,7 @@ class OrdersController < ApplicationController
 
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
     def find_patient
       @patient = Patient.find(params[:id])
     end
@@ -86,7 +83,6 @@ class OrdersController < ApplicationController
       @order = @patient.orders.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
       params.require(:order).permit(:diagnose, :patient_id, {service_orders_attributes: [:service_id, :value]})
     end
