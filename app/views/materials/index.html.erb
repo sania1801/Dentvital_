@@ -1,0 +1,13 @@
+<table>
+  <th>Название</th>
+  <th>Осталось на складе</th>
+  <% @materials.each do |material| %>
+    <tr>
+      <td><%= material.name %></td>
+      <td><%= material.value %></td>
+      <td> <%= link_to "Добавить материалы", edit_material_path(material.id) %> </td>
+      <td> <%= link_to "Списывание", edit_service_material_path(material.id) %> </td>
+    </tr>
+<% end %>
+</table>
+<%= link_to "Back", patients_path %>

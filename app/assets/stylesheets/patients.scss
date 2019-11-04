@@ -1,0 +1,31 @@
+// Place all the styles related to the Patients controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#all_patient{
+	margin-top: 10px;
+}
+
+.dataPatient{
+	font-weight: bold;
+}
+
+.adressPatient{
+	margin: 30px;
+	font-size: 30px;
+}
+
+.dobPatient{
+	margin:30px;
+	font-size: 30px;
+}
+
+.container {
+  width: 500px;
+  //clear: both;
+}
+
+.container input {
+  width: 100%;
+  //clear: both;
+}

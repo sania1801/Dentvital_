@@ -1,0 +1,40 @@
+<%= stylesheet_link_tag 'application' %>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<%= render 'navbar/form' %>
+
+<p id="notice"><%= notice %></p>
+
+<h1>Пациенты</h1>
+
+<table class="table">
+  <thead>
+  <tr>
+    <td>Фамилия</td>
+    <td>Имя</td>
+    <td>Отчество</td>
+    <td>Дата рождения</td>
+    <td>Адрес</td>
+    <td>Номер телефона</td>
+    <td>Редактирование</td>
+    <td>Удаление</td>
+    <td>Просмотр</td>
+  </tr>
+  </thead>
+
+  <tbody>
+  <tr><% @patients.each do |patient| %>
+      <!--      <td><%#=link_to patient.title.html_safe, patient_path(patient) %></td>-->
+      <td><%= patient.surname %></td>
+      <td><%= patient.name %></td>
+      <td><%= patient.fathername %></td>
+      <td><%= patient.dob.to_date.strftime("%d.%m.%Y") %></td>
+      <td><%= patient.adress %></td>
+      <td><%= patient.phonenumber %></td>
+      <td><span class = "btn btn-outline-warning" ><%=link_to 'Редактировать', edit_patient_path(patient) %></span></td>
+      <td><span class="btn btn-outline-danger"><%= link_to 'Удалить', patient, method: :delete, data: {confirm:'Are you sure?'}%></span></td>
+      <td><span class="btn btn-outline-primary"><%= link_to 'Показать ', patient %></span></td>
+      </tr>
+    <% end %>
+    </tbody>
+</table>
+<br>

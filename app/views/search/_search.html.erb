@@ -1,0 +1,7 @@
+<div class="form-inline mt-2 mt-md-0">
+  <label for="post_search"></label>
+  <%= form_tag patients_path,role: 'search', method: :get do |f|%>
+    <%= text_field_tag :q, params[:q], class: 'btn-btn-outline-primary'%>
+  <%= button_tag "Search", class: 'btn btn-default', name: nil %>
+  <% end %>
+</div>

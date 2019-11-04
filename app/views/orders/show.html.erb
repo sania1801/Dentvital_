@@ -1,0 +1,43 @@
+<%= javascript_include_tag 'orders' %>
+<%= render 'orders/form_title' %>
+<style>
+  table {
+    border: 4px; /* Рамка вокруг таблицы */
+    width: 100%; /* Ширина таблицы */
+    border-spacing: 7px 11px; /* Расстояние между ячейками */
+  }
+  td {
+    border: 1px solid #a52a2a; /* Граница вокруг ячеек */
+  }
+</style>
+<table >
+  <tr>
+    <td>Код</td>
+    <td>Название услуги</td>
+    <td>Цена</td>
+    <td>Кол-во</td>
+    <td>Код</td>
+    <td>Название услуги</td>
+    <td>Цена</td>
+    <td>Кол-во</td>
+  </tr>
+<% @order.service_orders.each_with_index do |ser,index |  %>
+    <% if index.even?  %>
+    <tr >
+        <td><%= ser.service.code %></td>
+        <td><%= ser.service.name %></td>
+        <td><%= ser.service.cost %></td>
+        <td><%= ser.value %></td>
+      <% end %>
+      <% if index.odd?  %>
+          <td><%= ser.service.code %></td>
+          <td><%= ser.service.name %></td>
+          <td><%= ser.service.cost %></td>
+          <td><%= ser.value %></td>
+        </tr>
+        <% end %>
+  <% end %>
+</table>
+  <h4 align="right">Итого:<%=@order.total %></h4>
+<%= render 'orders/form_signature' %>
+<button class="btn btn-outline-primary my-2 my-sm-0" type="submit" id="print_button">Распечатать</button>

@@ -1,0 +1,11 @@
+ <%= form_with(model:@material) do |material|%>
+<table>
+  <th>Название</th>
+  <th>Осталось на складе</th>
+      <tr>
+        <td><%= @material.name %></td>
+        <td><%= material.number_field :value, step: "any" %></td>
+        <td><%= material.submit "Save" %></td>
+      </tr>
+  <% end %>
+</table>

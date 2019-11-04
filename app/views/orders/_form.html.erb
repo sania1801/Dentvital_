@@ -1,0 +1,34 @@
+<%= form_with(model: @order) do |form| %>
+
+  <div class="field">
+    <%= form.label :diagnose %>
+    <%= form.text_field :diagnose %>
+  </div>
+
+  <%= form.hidden_field :patient_id, value: @order.patient.id %>
+  <table>
+    <tr>
+      <td>Код</td>
+      <td>Название услуги</td>
+      <td>Цена</td>
+      <td>Кол-во</td>
+    </tr>
+  <%= form.fields_for :service_orders, @service_order do |builder| %>
+          <tr>
+            <%= builder.hidden_field :service_id, value: builder.object.service.id %>
+            <td><%= builder.object.service.code %></td>
+            <td><%= builder.object.service.name %></td>
+            <td><%= builder.object.service.cost %></td>
+            <td><%= builder.number_field :value %></td>
+          </tr>
+    <% end %>
+  </table>
+
+  <div class="action">
+    <%= form.submit %>
+  </div>
+
+<% end %>
+
+
+

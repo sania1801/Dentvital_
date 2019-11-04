@@ -1,0 +1,61 @@
+<%= form_with(model: patient, local: true) do |form| %>
+  <% if patient.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(patient.errors.count, "error") %> prohibited this patient from being saved:</h2>
+
+      <ul>
+      <% patient.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="container">
+  <div class="col-lg-6 align-items-center justify-content-center text-center">
+    <div class="input-group">
+       <div class="input-group-prepend">
+         <p class="input-group-text">Фамилия</p>
+        </div>
+      <%= form.text_field :surname %>
+    </div>
+
+    <div class="input-group">
+       <div class="input-group-prepend">
+          <p class="input-group-text">Имя</p>
+        </div>     
+        <%= form.text_field :name %>
+    </div>
+
+    <div class="input-group">
+       <div class="input-group-prepend">
+         <p class="input-group-text">Отчество</p>
+        </div>
+      <%= form.text_field :fathername %>
+    </div>
+
+    <div class="input-group">
+       <div class="input-group-prepend">
+         <p class="input-group-text">Адрес проживания</p>
+        </div>
+      <%= form.text_field :adress %>
+    </div>
+
+    <div class="input-group">
+       <div class="input-group-prepend">
+         <p class="input-group-text">Номер телефона</p>
+        </div>
+      <%= form.text_field :phonenumber %>
+    </div>
+
+    <div class="input-group">
+       <div class="input-group-prepend">
+         <p class="input-group-text">Дата рождения</p>
+        </div>
+      <%= form.date_field :dob %>
+    </div>
+  </div>
+ </div>  
+  <div class="actions">
+    <button type='submit' class='btn btn-outline-success'>Сохранить</button>
+  </div>
+<% end %>

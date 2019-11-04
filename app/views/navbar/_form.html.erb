@@ -1,0 +1,25 @@
+<%= javascript_include_tag 'orders' %>
+<nav class="navbar navbar-expand navbar-dark bg-light">
+  <button class="btn btn-outline-danger my-2 my-sm-0" type="submit"  id="admin_tool"> ДэнтВиталь</button>
+  <div class="collapse navbar-collapse" id="navbarsExample02">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit"  id="new_patient">Создать пациента</button>
+      </li>
+      <li class="nav-item">
+          <button class="btn btn-outline-primary my-2 my-sm-0" type="submit"  id="all_patient">Показать всех</button>
+      </li>
+      <li class="nav-item">
+        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit"  id="move_to_store">Склад</button>
+      </li>
+      <li class="nav-item">
+        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit"  id="service_materials">Списывание</button>
+      </li>
+<!--      <li class="nav-item">-->
+<!--        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit"  src="everyday_list_path">Лист ежедневного учёта</button>-->
+<!--      </li>-->
+
+    </ul>
+    <%= render "search/search" %>
+  </div>
+</nav>

@@ -1,0 +1,22 @@
+<%= form_with(model: @service_materials) do |form| %>
+
+
+<table>
+    <tr>
+      <td>Код</td>
+      <td>Название услуги</td>
+      <td>Цена</td>
+      <td>Кол-во материала</td>
+    </tr>
+  <%= form.fields_for :materials, @service_order do |builder| %>
+          <tr>
+            <%= builder.hidden_field :service_id, value: builder.object.service.id %>
+            <td><%= builder.object.service.code %></td>
+            <td><%= builder.object.service.name %></td>
+            <td><%= builder.object.service.cost %></td>
+            <td><%= builder.number_field :value_m %></td>
+          </tr>
+    <% end %>
+  </table>
+
+<% end %>

@@ -1,0 +1,7 @@
+{
+  "name": "Dentvital",
+  "private": true,
+  "dependencies": {
+    "d3-flame-graph": "^2.1.7"
+  }
+}
