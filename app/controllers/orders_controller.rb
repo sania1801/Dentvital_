@@ -18,7 +18,7 @@ class OrdersController < ApplicationController
   def destroy
     @patient = Patient.find(params[:id])
     @order = Order.find(params[:format])
-    writing_off(1)
+    @order.writing_off(1,@order)
     @order.destroy
     redirect_to patient_path(@patient)
   end
@@ -42,36 +42,15 @@ class OrdersController < ApplicationController
   def create
     @order =  Order.create(order_params)
     @patient = @order.patient
-    @order.date_order = DateTime.now
-    @order.age = age(@patient.dob)
-    @order.service_orders.each do |t|
-      @order.total += (t.service.cost.to_f * t.value)
-    end
+    @order.math_data(@order)
     if @order.save
-      writing_off(-1)
+      @order.writing_off(-1,@order)
       flash[:notice] = "Successfully created page."
       redirect_to patient_path(@patient)
     else
-      render :action => 'new'
+      render 'new'
     end
   end
-
-  def writing_off(sign)
-     @order.service_orders.each do |service_order|
-      service_material = ServiceMaterial.where(["service_id = ?",service_order.service.id]).first
-      if service_material.nil?
-        material = Material.where({service_material: service_material.id}).first
-        material.value += sign * service_material.value_m * service_order.value
-        material.save
-      end
-    end
-  end
-
-  def age(dob)
-    now = Time.now.utc.to_date
-    now.year - dob.year - ((now.month > dob.month || (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
-  end
-
 
   private
 

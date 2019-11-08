@@ -1,9 +1,10 @@
 <h1 align="middle">Заказы</h1>
 <% @patient.orders.each do |order| %>
-  <table>
+  <table class="table">
     <tr>
-      <td><h2><%= link_to "Заказ за #{order.date_order}", order_path(@patient, order.id) %></h2></td>
-      <td><h2> <%= link_to "Удалить", order_path(@patient,order), method: :delete, data:{confirm: 'Точно?Последний шанс'} %></h2></td>
+      <td><h3><%= link_to "Заказ за #{order.date_order}", order_path(@patient, order.id) %></h2></td>
+      <td><h3><%= link_to "Редактировать", edit_order_path(@patient,order)%></h3></td>
+      <td><h3> <%= link_to "Удалить", order_path(@patient,order), method: :delete, data:{confirm: 'Точно?Последний шанс'} %></h2></td>
     </tr>
   </table>
 

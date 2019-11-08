@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_03_223725) do
+ActiveRecord::Schema.define(version: 2019_11_07_232210) do
 
   create_table "active_admin_comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "namespace"
@@ -42,9 +42,7 @@ ActiveRecord::Schema.define(version: 2019_11_03_223725) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "service_materials_id"
     t.float "value", default: 0.0
-    t.index ["service_materials_id"], name: "index_materials_on_service_materials_id"
   end
 
   create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -54,10 +52,8 @@ ActiveRecord::Schema.define(version: 2019_11_03_223725) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "patient_id"
-    t.bigint "service_orders_id"
     t.float "total", default: 0.0
     t.index ["patient_id"], name: "index_orders_on_patient_id"
-    t.index ["service_orders_id"], name: "index_orders_on_service_orders_id"
   end
 
   create_table "patients", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -69,8 +65,6 @@ ActiveRecord::Schema.define(version: 2019_11_03_223725) do
     t.date "dob"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "orders_id"
-    t.index ["orders_id"], name: "index_patients_on_orders_id"
   end
 
   create_table "service_materials", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
